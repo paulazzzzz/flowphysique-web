@@ -1,17 +1,12 @@
-/* Resetare de bază */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* --- RESET & BODY --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background-color: #050505; /* Negru foarte închis */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
+  background-color: #050505;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #ffffff;
 }
 
-/* Container Principal - Centrează totul */
 .app-container {
   min-height: 100vh;
   display: flex;
@@ -19,20 +14,117 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  text-align: center;
-  /* Un mic gradient subtil pe fundal */
-  background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
-  color: #ffffff;
+  background: radial-gradient(circle at center, #1f1f1f 0%, #000000 100%);
 }
 
-/* Animație subtilă de apariție (Fade In) */
-.content-wrapper {
-  animation: fadeIn 0.8s ease-out;
+/* --- MAIN CARD --- */
+/* Aici definim containerul principal */
+.main-card {
   width: 100%;
-  max-width: 450px; /* Lățimea maximă a cardului */
+  max-width: 450px; /* Default pentru Mobil */
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Default: una sub alta */
   align-items: center;
+  text-align: center;
+  gap: 20px;
+  animation: fadeIn 0.8s ease-out;
 }
 
-/* Fotografia de Profil */
+/* --- STILURI GENERALE (Mobil first) --- */
+
+.profile-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffffff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover { transform: scale(1.05); }
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #fff, #999);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle { font-size: 1.1rem; color: #888; margin-bottom: 15px; font-weight: 500; }
+
+.description { font-size: 1rem; color: #ccc; line-height: 1.6; margin-bottom: 30px; }
+
+/* Butoane */
+.button-container { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+
+.social-btn {
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px; border-radius: 12px; text-decoration: none;
+  font-weight: 700; color: white; transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.social-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.6); }
+
+.btn-youtube { background-color: #ce1312; }
+.btn-youtube:hover { background-color: #ff0000; }
+
+.btn-instagram {
+  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+  background-size: 200%;
+  animation: gradientAnimation 5s infinite;
+}
+
+.icon { width: 24px; height: 24px; margin-right: 10px; fill: white; }
+.footer { margin-top: 40px; font-size: 0.8rem; color: #444; }
+
+/* --- DESKTOP (Ecrane mai mari de 800px) --- */
+@media (min-width: 800px) {
+  .main-card {
+    max-width: 900px; /* Lățime mai mare */
+    flex-direction: row; /* Punem elementele unul lângă altul */
+    align-items: center; /* Le aliniem vertical la mijloc */
+    text-align: left; /* Text aliniat la stânga, nu centrat */
+    background: rgba(255, 255, 255, 0.03); /* Un fundal subtil de sticlă */
+    padding: 60px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.05);
+    gap: 60px; /* Spațiu între poză și text */
+  }
+
+  .left-section {
+    flex: 1; /* Ocupă spațiu egal */
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile-avatar {
+    width: 280px; /* Poza mult mai mare pe desktop */
+    height: 280px;
+  }
+
+  .right-section {
+    flex: 1.5; /* Partea cu textul e puțin mai lată */
+  }
+
+  /* Pe desktop vrem butoanele puțin mai compacte, nu pe toată lățimea */
+  .button-container {
+    align-items: flex-start; /* Aliniate la stânga */
+  }
+  
+  .social-btn {
+    width: auto; /* Butonul e cât textul, nu full width */
+    padding-left: 30px; 
+    padding-right: 30px;
+    min-width: 250px; /* Dar să aibă o lățime minimă */
+  }
+}
+
+/* Animații */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes gradientAnimation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
