@@ -34,7 +34,7 @@ function App() {
           </h1>
           
           <div className="tagline-box">
-            EXPANSION / MASTERY / MOTION
+            EXPANSION / SKILLS / MOTION
           </div>
 
           <p className="bio-text">

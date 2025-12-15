@@ -74,7 +74,7 @@ body {
 .highlight { color: #d65a31; }
 
 .tagline-box {
-  background: #fff; color: #000;
+  background: #e3d5c5; color: #000;
   display: inline-block; padding: 5px 10px;
   font-weight: bold; transform: skewX(-10deg);
   margin-bottom: 20px;
