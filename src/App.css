@@ -1,153 +1,234 @@
 /* --- FONTS --- */
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+/* Un font bold, condensat, stil poster stradal */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Roboto+Mono:wght@400;700&display=swap');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background-color: #050505;
-  font-family: 'Chakra Petch', sans-serif; /* Font tehnic/futurist/street */
-  color: #fff;
+  background-color: #1a1918; /* Un negru cald (spre maro închis) */
+  font-family: 'Roboto Mono', monospace; /* Font tehnic dar simplu */
+  color: #e3d5c5; /* Culoare crem/hârtie veche */
   overflow-x: hidden;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
 }
 
-/* Containerul care ține totul */
-.stage-container {
-  position: relative;
+/* Container Principal */
+.street-wrapper {
   min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 20px;
-  /* Fundal static cu zgomot/noise subtil */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-  background-color: #080808;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall.png"); /* Textură subtilă de perete */
+  gap: 40px;
 }
 
-/* --- ELEMENTELE ANIMATE CU ALEX (Z-Index Mic) --- */
-.alex-anim {
-  position: absolute;
-  pointer-events: none; /* Ca să poți da click prin ele */
-  z-index: 1; /* Sunt ÎN SPATELE butoanelor */
-  opacity: 0.8;
-  filter: grayscale(100%) contrast(1.2); /* Look alb-negru dur */
-  mix-blend-mode: hard-light; /* Se combină cu fundalul într-un mod interesant */
+/* --- TITLURI & STIL --- */
+h1, h2, h3 {
+  font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Animația 1: Jos stânga (ex: gardă) */
-.anim-left {
-  bottom: 0;
-  left: -20px;
-  height: 50vh; /* Ocupă jumătate din ecran pe înălțime */
-  width: auto;
-  object-fit: contain;
-}
-
-/* Animația 2: Sus dreapta (ex: privire) */
-.anim-right {
-  top: 50px;
-  right: -30px;
-  height: 40vh;
-  width: auto;
-  transform: scaleX(-1); /* O oglindim dacă e nevoie să se uite spre centru */
-}
-
-/* --- CONTINUTUL PRINCIPAL (Z-Index Mare) --- */
-.content-layer {
-  position: relative;
-  z-index: 10; /* Peste animații */
-  width: 100%;
-  max-width: 450px;
-  text-align: center;
-  /* Un pic de blur în spate ca să se citească textul peste animații */
-  background: rgba(0, 0, 0, 0.4); 
-  backdrop-filter: blur(3px);
-  padding: 30px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 4px; /* Colțuri drepte, nu rotunde */
-}
-
-/* Titluri cu efect de glitch static */
-.main-title {
-  font-size: 3rem;
-  font-weight: 700;
+.brand-title {
+  font-size: 3.5rem;
+  color: #e3d5c5;
   line-height: 0.9;
   margin-bottom: 10px;
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow: 2px 2px 0px #ff003c; /* Umbră roșie */
+  /* Efect de spray/murdar */
+  text-shadow: 3px 3px 0px #000; 
 }
 
-.tagline {
-  font-size: 1rem;
-  color: #aaa;
-  margin-bottom: 40px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border-bottom: 2px solid #ff003c;
-  display: inline-block;
-  padding-bottom: 5px;
+.highlight {
+  color: #d65a31; /* Un portocaliu ars (cald, street, alertă) */
 }
 
-/* Butoane - Stil Cyberpunk/Street */
-.btn-stack {
+/* --- LAYOUT PENTRU DESKTOP (Stânga / Dreapta) --- */
+.content-grid {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
-.glitch-btn {
-  position: relative;
+/* Coloana Stângă (Socials) */
+.left-col {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background: #000;
-  border: 1px solid #fff;
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: all 0.2s;
+  flex: 1;
+}
+
+/* Coloana Dreaptă (Collaborate) */
+.right-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* --- ANIMAȚII CU POZE (COLLAGE EFFECT) --- */
+/* Aici pui pozele de pe Instagram decupate */
+.collage-container {
+  position: fixed; /* Stau în fundal */
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; /* Nu blochează click-urile */
+  z-index: 1;
   overflow: hidden;
 }
 
-.glitch-btn:hover {
+.cutout-img {
+  position: absolute;
+  opacity: 0.15; /* Foarte subtil în fundal */
+  filter: sepia(100%) contrast(1.2); /* Efect vintage/cald */
+  transition: all 0.5s ease;
+}
+
+/* Poza 1 - Stânga Jos */
+.img-1 {
+  bottom: -50px;
+  left: -50px;
+  width: 300px;
+  transform: rotate(-10deg);
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Poza 2 - Dreapta Sus */
+.img-2 {
+  top: -50px;
+  right: -50px;
+  width: 350px;
+  transform: rotate(10deg);
+  animation: float 7s ease-in-out infinite reverse;
+}
+
+/* --- CARDS & BUTTONS --- */
+.social-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #d65a31;
+  padding: 20px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.street-btn {
+  background: #d65a31;
+  color: #1a1918;
+  padding: 15px 25px;
+  font-family: 'Anton', sans-serif;
+  font-size: 1.2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 2px solid #d65a31;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.street-btn:hover {
+  background: transparent;
+  color: #d65a31;
+  transform: skew(-10deg);
+}
+
+/* BUTONUL TIKTOK (Specific) */
+.btn-tiktok {
+  background: #000;
+  border-color: #fff;
+  color: #fff;
+}
+.btn-tiktok:hover {
   background: #fff;
   color: #000;
-  transform: translateX(-3px) translateY(-3px);
-  box-shadow: 5px 5px 0px #ff003c; /* Umbră solidă la hover */
 }
 
-/* Detalii responsive */
-@media (min-width: 800px) {
-  .stage-container {
+/* --- DREAPTA: TEACH ME CARD (Stil Poster/Sticky Note) --- */
+.teach-me-card {
+  background: #e3d5c5; /* Culoare de hârtie/carton */
+  color: #1a1918; /* Text închis la culoare */
+  padding: 30px;
+  transform: rotate(2deg); /* Puțin strâmb, ca un afiș lipit */
+  box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+  max-width: 450px;
+  margin: 0 auto; /* Centrat pe mobil */
+}
+
+.tape {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 30px;
+  background: rgba(255,255,255,0.4);
+  transform: rotate(-2deg);
+}
+
+.teach-input {
+  width: 100%;
+  padding: 15px;
+  background: transparent;
+  border: 2px solid #1a1918;
+  margin-bottom: 15px;
+  font-family: 'Roboto Mono', monospace;
+  color: #1a1918;
+  font-weight: bold;
+}
+
+.teach-input::placeholder { color: #555; }
+
+.teach-btn {
+  width: 100%;
+  padding: 15px;
+  background: #1a1918;
+  color: #e3d5c5;
+  border: none;
+  font-family: 'Anton', sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.teach-btn:hover {
+  background: #d65a31;
+  color: #fff;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(-10deg); }
+  50% { transform: translateY(-20px) rotate(-8deg); }
+  100% { transform: translateY(0px) rotate(-10deg); }
+}
+
+/* --- MEDIA QUERIES (DESKTOP) --- */
+@media (min-width: 900px) {
+  .street-wrapper {
     justify-content: center;
   }
-  .anim-left {
-    height: 70vh; /* Mai mare pe desktop */
-    left: 10%;
+  .content-grid {
+    flex-direction: row; /* Pe desktop le punem una lângă alta */
+    align-items: center;
+    gap: 80px;
   }
-  .anim-right {
-    height: 60vh;
-    right: 15%;
-    top: 100px;
+  .right-col {
+    align-items: flex-end; /* Cardul de Teach Me aliniat dreapta */
   }
-  .content-layer {
-    background: rgba(0, 0, 0, 0.6); /* Mai întunecat pe desktop */
-  }
-}
-
-/* Efect scanline pe tot ecranul (opțional, stil TV vechi) */
-.scanlines {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
-  background-size: 100% 4px;
-  z-index: 50;
-  pointer-events: none;
+  .brand-title { font-size: 6rem; }
+  .cutout-img { opacity: 0.4; } /* Mai vizibile pe desktop */
+  .img-1 { width: 500px; left: 0; bottom: -100px; }
+  .img-2 { width: 600px; right: 0; top: -50px; }
 }
