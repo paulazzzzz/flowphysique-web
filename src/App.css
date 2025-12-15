@@ -2,9 +2,10 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background-color: #050505;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #0a0a0a;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; /* Font mai modern/tehnic */
   color: #ffffff;
+  overflow-x: hidden;
 }
 
 .app-container {
@@ -12,119 +13,182 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: radial-gradient(circle at center, #1f1f1f 0%, #000000 100%);
+  padding: 40px 20px;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(20, 50, 200, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(200, 50, 20, 0.1) 0%, transparent 40%);
 }
 
-/* --- MAIN CARD --- */
-/* Aici definim containerul principal */
-.main-card {
+/* --- HERO CARD (Profil) --- */
+.hero-card {
   width: 100%;
-  max-width: 450px; /* Default pentru Mobil */
-  display: flex;
-  flex-direction: column; /* Default: una sub alta */
-  align-items: center;
+  max-width: 600px;
   text-align: center;
-  gap: 20px;
-  animation: fadeIn 0.8s ease-out;
+  margin-bottom: 40px;
+  animation: slideDown 0.8s ease-out;
 }
-
-/* --- STILURI GENERALE (Mobil first) --- */
 
 .profile-avatar {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Sau 20px pentru un look mai "tech/app" */
   object-fit: cover;
-  border: 4px solid #ffffff;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-  transition: transform 0.3s ease;
+  border: 3px solid #3b82f6; /* Albastru electric - simbolizeaza cunoaștere/energie */
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+  margin-bottom: 20px;
 }
 
-.profile-avatar:hover { transform: scale(1.05); }
-
-.title {
+.brand-name {
   font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 5px;
+  font-weight: 900;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #fff, #999);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+  margin-bottom: 5px;
 }
 
-.subtitle { font-size: 1.1rem; color: #888; margin-bottom: 15px; font-weight: 500; }
-
-.description { font-size: 1rem; color: #ccc; line-height: 1.6; margin-bottom: 30px; }
-
-/* Butoane */
-.button-container { width: 100%; display: flex; flex-direction: column; gap: 15px; }
-
-.social-btn {
-  display: flex; align-items: center; justify-content: center;
-  padding: 16px; border-radius: 12px; text-decoration: none;
-  font-weight: 700; color: white; transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+.tagline {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  font-weight: 400;
+  margin-bottom: 25px;
 }
 
-.social-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.6); }
-
-.btn-youtube { background-color: #ce1312; }
-.btn-youtube:hover { background-color: #ff0000; }
-
-.btn-instagram {
-  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
-  background-size: 200%;
-  animation: gradientAnimation 5s infinite;
+/* --- BADGES (Etichete) --- */
+.badges-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
-.icon { width: 24px; height: 24px; margin-right: 10px; fill: white; }
-.footer { margin-top: 40px; font-size: 0.8rem; color: #444; }
+.badge {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-/* --- DESKTOP (Ecrane mai mari de 800px) --- */
+/* --- CURRENT MISSION CARD (Noutate) --- */
+/* Aceasta secțiune este vitală pentru el - arată că e activ */
+.mission-card {
+  width: 100%;
+  max-width: 500px;
+  background: linear-gradient(145deg, #1e1e1e, #111111);
+  border-left: 4px solid #3b82f6; /* Linia de accent */
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #3b82f6;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Punctul care pulsează (Rec) */
+.pulsing-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.mission-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.mission-desc {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  line-height: 1.5;
+}
+
+/* --- LINKS SECTION --- */
+.links-container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Icon stanga, sageata dreapta */
+  padding: 18px 24px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.link-btn:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateX(5px); /* Se mișcă spre dreapta, sugerând acțiune */
+  border-color: rgba(255,255,255,0.2);
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.btn-subtitle {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 400;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
+
+/* --- RESPONSIVE DESKTOP --- */
 @media (min-width: 800px) {
-  .main-card {
-    max-width: 900px; /* Lățime mai mare */
-    flex-direction: row; /* Punem elementele unul lângă altul */
-    align-items: center; /* Le aliniem vertical la mijloc */
-    text-align: left; /* Text aliniat la stânga, nu centrat */
-    background: rgba(255, 255, 255, 0.03); /* Un fundal subtil de sticlă */
-    padding: 60px;
-    border-radius: 30px;
-    border: 1px solid rgba(255,255,255,0.05);
-    gap: 60px; /* Spațiu între poză și text */
-  }
-
-  .left-section {
-    flex: 1; /* Ocupă spațiu egal */
-    display: flex;
+  .app-container {
+    flex-direction: row;
     justify-content: center;
+    gap: 80px;
+    align-items: flex-start;
+    padding-top: 100px;
   }
-
-  .profile-avatar {
-    width: 280px; /* Poza mult mai mare pe desktop */
-    height: 280px;
+  .hero-card {
+    text-align: left;
+    max-width: 400px;
+    position: sticky; /* Rămâne fix pe desktop când dai scroll */
+    top: 50px;
   }
-
-  .right-section {
-    flex: 1.5; /* Partea cu textul e puțin mai lată */
-  }
-
-  /* Pe desktop vrem butoanele puțin mai compacte, nu pe toată lățimea */
-  .button-container {
-    align-items: flex-start; /* Aliniate la stânga */
-  }
-  
-  .social-btn {
-    width: auto; /* Butonul e cât textul, nu full width */
-    padding-left: 30px; 
-    padding-right: 30px;
-    min-width: 250px; /* Dar să aibă o lățime minimă */
-  }
+  .badges-container { justify-content: flex-start; }
+  .mission-card, .links-container { width: 450px; }
 }
-
-/* Animații */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes gradientAnimation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
