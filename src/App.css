@@ -5,7 +5,8 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-  height: 100%; /* Asigură că negrul acoperă tot ecranul */
+  margin: 0;
+  padding: 0;
   background-color: #000000;
 }
 
@@ -15,8 +16,21 @@ body {
   margin: 0;
   overflow-x: hidden;
   width: 100%;
+  overflow-x: hidden;
 }
-
+/* Adaugă asta undeva sus în App.css */
+.main-page-container {
+  width: 100%;
+  min-height: 10vh;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  
+  /* ASTA REPARĂ PROBLEMA: Îi spunem să înceapă de SUS, nu de la mijloc */
+  justify-content: flex-start ; 
+  align-items: center; /* Centrează doar stânga-dreapta */
+  overflow-x: hidden;
+}
 .street-wrapper {
   min-height: 100vh;
   width: 100%;
@@ -90,6 +104,72 @@ body {
   border-left: 4px solid #d65a31;
 }
 
+/* --- SECȚIUNEA PILLARS --- */
+.pillars-section {
+  width: 100%;
+  max-width: 1100px;
+  margin-top: 100px; /* Spațiu mare față de partea de sus */
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 10;
+}
+
+.section-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #d65a31; /* Linie portocalie sub titlu */
+  display: inline-block;
+}
+
+.pillars-container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.pillar-card {
+  flex: 1; /* Se împart egal */
+  min-width: 280px;
+  background: #1a1918; /* Gri foarte închis */
+  border: 1px solid #333;
+  padding: 25px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.pillar-card:hover {
+  border-color: #d65a31; /* Se face portocaliu la hover */
+  transform: translateY(-5px);
+}
+
+.pillar-card h3 {
+  font-family: 'Anton', sans-serif;
+  color: #e3d5c5;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.pillar-card p {
+  font-family: 'Roboto Mono', monospace;
+  color: #aaa;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* --- FOOTER --- */
+.simple-footer {
+  margin-top: 100px;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: #555;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  z-index: 10;
+}
 /* --- BUTOANE --- */
 .btn-row { display: flex; flex-wrap: wrap; gap: 15px; }
 
@@ -194,5 +274,13 @@ body {
     left:0;
     top: 0;
     opacity: 0.5;
+  }
+  .street-wrapper {
+    flex-direction: column; /* Le punem una sub alta */
+    height: auto; /* Lăsăm înălțimea să crească cât e nevoie */
+  }
+  
+  .pillars-section {
+    margin-top: 100px;
   }
 }
