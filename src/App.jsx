@@ -1,51 +1,63 @@
 import React from 'react';
 import './App.css';
+import alexVideo from './alex-move-vmake.webm'; // Importăm doar videoclipul cu Alex
 
 function App() {
   return (
     <div className="street-wrapper">
 
-      {/* --- LAYER 1: FUNDAL DINAMIC (Poze decupate) --- */}
-      <div className="collage-container">
-        {/* Înlocuiește src cu pozele tale decupate (fără fundal) */}
-        <img 
-          src="https://images.unsplash.com/photo-1583468982228-19f19164aee2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-          alt="Alex Cutout 1" 
-          className="cutout-img img-1" 
-        />
-        <img 
-          src="https://images.unsplash.com/photo-1517438476312-10d79c077509?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-          alt="Alex Cutout 2" 
-          className="cutout-img img-2" 
-        />
-      </div>
+      {/* --- STRAT DE TEXTURĂ (Noise) --- */}
+      {/* Doar textură pe fundal negru */}
+      <div className="video-overlay"></div>
 
-      {/* --- LAYER 2: CONȚINUTUL (Grid) --- */}
+      {/* --- PERSONAJUL ALEX (Animația) --- */}
+      {/* Apare în colț, blenduit cu ecranul */}
+      <video 
+        autoPlay loop muted playsInline 
+        className="alex-character"
+        // Adaugă linia asta de mai jos:
+        style={{ position: 'fixed', right: '-280px', bottom: '0', height: '80vh', zIndex: '1' }}
+      >
+        <source src={alexVideo} type="video/webm" />
+      </video>
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        className="alex-character" 
+      >
+        <source src={alexVideo} type="video/webm" />
+      </video>
+
+      {/* --- CONȚINUTUL PRINCIPAL --- */}
       <div className="content-grid">
 
-        {/* --- STÂNGA: IDENTITATE & SOCIALS --- */}
+        {/* --- STÂNGA: Brand & Socials --- */}
         <div className="left-col">
           <h1 className="brand-title">
             FLOW<br/>
             <span className="highlight">PHYSIQUE</span>
           </h1>
-          <p style={{fontSize: '1.1rem', maxWidth: '400px', lineHeight: '1.6', marginBottom: '30px'}}>
+          
+          <div className="tagline-box">
+            EXPANSION / MASTERY / MOTION
+          </div>
+
+          <p className="bio-text">
             Nu sunt guru. Sunt un student al disciplinei.
             Documentez haosul și ordinea din spatele evoluției.
           </p>
 
           <div className="social-card">
-            <h3 style={{marginBottom: '15px'}}>Urmărește procesul:</h3>
+            <h3>URMĂREȘTE PROCESUL:</h3>
             <div className="btn-row">
-              {/* YouTube */}
               <a href="https://www.youtube.com/@alexandruflocea7215" target="_blank" rel="noreferrer" className="street-btn">
                 YouTube
               </a>
-              {/* Instagram */}
               <a href="https://www.instagram.com/alexandru.flw" target="_blank" rel="noreferrer" className="street-btn">
                 Instagram
               </a>
-              {/* TikTok (NOU) */}
               <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" className="street-btn btn-tiktok">
                 TikTok
               </a>
@@ -53,36 +65,25 @@ function App() {
           </div>
         </div>
 
-        {/* --- DREAPTA: TEACH ME / COLLABS --- */}
+        {/* --- DREAPTA: Formular Teach Me --- */}
         <div className="right-col">
           
           <div className="teach-me-card">
-            {/* Element decorativ: Banda adezivă */}
             <div className="tape"></div>
             
-            <h2 style={{fontSize: '2rem', marginBottom: '10px'}}>AI UN SKILL?</h2>
-            <h3 style={{fontFamily: 'Permanent Marker', color: '#d65a31', marginBottom: '20px'}}>ÎNVAȚĂ-MĂ CEVA.</h3>
+            <h2 style={{fontSize: '2rem', marginBottom: '5px'}}>AI UN SKILL?</h2>
+            <h3 className="handwritten-text">ÎNVAȚĂ-MĂ CEVA.</h3>
             
-            <p style={{marginBottom: '20px', fontSize: '0.9rem', fontWeight: 'bold'}}>
-              Caut oameni de la care pot învăța. Fie că e vorba de luptă, artă, business sau supraviețuire. 
-              Dacă vrei să facem un schimb de experiență, scrie-mi.
-            </p>
-
-            {/* Formular Simplu (Simulat - duce la Email) */}
-            <form action="mailto:contact@flowphysique.com?subject=Vreau sa te invat ceva" method="post" encType="text/plain">
+            <form action="mailto:contact@flowphysique.com?subject=Propunere Colaborare" method="post" encType="text/plain">
               <input 
                 type="text" 
-                placeholder="Ce skill ai? (ex: Box, Programare...)" 
+                placeholder="Ce poți să mă înveți? (ex: Box, Editare...)" 
                 className="teach-input"
               />
               <button type="submit" className="teach-btn">
                 TRIMITE PROPUNEREA
               </button>
             </form>
-
-            <p style={{fontSize: '0.7rem', marginTop: '10px', textAlign: 'center', opacity: 0.7}}>
-              *Vei fi redirecționat către aplicația de Email.
-            </p>
           </div>
 
         </div>
