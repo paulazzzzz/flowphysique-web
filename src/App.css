@@ -191,8 +191,8 @@ body {
   
   .alex-character {
     height: 40vh;
-    left:-10%;
+    left:-20%;
     top: 0;
-    opacity: 0.4;
+    opacity: 0.5;
   }
 }
