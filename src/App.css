@@ -1,194 +1,173 @@
-/* --- RESET & BODY --- */
+/* --- IMPORT FONT URBAN --- */
+/* Folosim un font 'condensed' și bold pentru un look industrial/street */
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap');
+
+/* --- RESET & BASE --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background-color: #0a0a0a;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; /* Font mai modern/tehnic */
+  background-color: #000;
+  font-family: 'Teko', sans-serif; /* Fontul urban */
   color: #ffffff;
   overflow-x: hidden;
+  height: 100vh;
+  width: 100vw;
 }
 
-.app-container {
+/* --- BACKGROUND LAYERS (Magia din spate) --- */
+.street-container {
+  position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  background: 
-    radial-gradient(circle at 10% 20%, rgba(20, 50, 200, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(200, 50, 20, 0.1) 0%, transparent 40%);
-}
-
-/* --- HERO CARD (Profil) --- */
-.hero-card {
   width: 100%;
-  max-width: 600px;
-  text-align: center;
-  margin-bottom: 40px;
-  animation: slideDown 0.8s ease-out;
-}
-
-.profile-avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%; /* Sau 20px pentru un look mai "tech/app" */
-  object-fit: cover;
-  border: 3px solid #3b82f6; /* Albastru electric - simbolizeaza cunoaștere/energie */
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
-  margin-bottom: 20px;
-}
-
-.brand-name {
-  font-size: 2.5rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  margin-bottom: 5px;
-}
-
-.tagline {
-  font-size: 1.1rem;
-  color: #94a3b8;
-  font-weight: 400;
-  margin-bottom: 25px;
-}
-
-/* --- BADGES (Etichete) --- */
-.badges-container {
+  overflow: hidden;
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
+  align-items: center; /* Pe mobil, centrat */
+  padding: 20px;
 }
 
-.badge {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 6px 14px;
-  border-radius: 30px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #cbd5e1;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+/* 1. Imaginea cu Alex (Fundalul dinamic) */
+.bg-alex-dynamic {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%; /* Mai mare decat ecranul pentru a permite mișcarea */
+  height: 120%;
+  /* AICI PUI POZA LUI HERO */
+  background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); 
+  background-size: cover;
+  background-position: center;
+  /* Filtru pentru a o face mai "dark" și urbană (alb-negru + contrast) */
+  filter: grayscale(100%) contrast(1.2) brightness(0.5);
+  z-index: 1;
+  /* Animația de mișcare lentă (Ken Burns effect) */
+  animation: slowPanZoom 30s infinite alternate ease-in-out;
 }
 
-/* --- CURRENT MISSION CARD (Noutate) --- */
-/* Aceasta secțiune este vitală pentru el - arată că e activ */
-.mission-card {
+/* 2. Textura de Zgomot (Noise Overlay) - Efect Street */
+.bg-noise-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 2;
+  /* Un pattern subtil de noise */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+  pointer-events: none; /* Lasă click-urile să treacă prin ea */
+  opacity: 0.4;
+}
+
+/* 3. Gradient Overlay (Ca să fie textul lizibil) */
+.bg-gradient-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 3;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8), #000000);
+}
+
+/* --- CONTENT LAYER (Ce e în față) --- */
+.content-layer {
+  position: relative;
+  z-index: 10; /* Deasupra fundalurilor */
   width: 100%;
   max-width: 500px;
-  background: linear-gradient(145deg, #1e1e1e, #111111);
-  border-left: 4px solid #3b82f6; /* Linia de accent */
-  padding: 20px;
-  border-radius: 12px;
   text-align: left;
+}
+
+/* --- TYPOGRAPHY STREET STYLE --- */
+.brand-title {
+  font-size: 5rem; /* Foarte mare */
+  line-height: 0.9;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  margin-bottom: 10px;
+  /* Efect de text "tăiat" sau dublat subtil */
+  text-shadow: 3px 3px 0px rgba(255, 0, 0, 0.3);
+}
+
+.brand-subtitle {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: #f0f0f0;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  border-left: 5px solid #ff003c; /* Accent roșu electric */
+  padding-left: 15px;
+}
+
+.bio-text {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif; /* Font normal pt citit */
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.5;
   margin-bottom: 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.5); /* Fundal semi-transparent pentru citire */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* --- BUTTONS URBAN --- */
+.links-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.urban-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 25px;
+  text-decoration: none;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  /* Stil de buton "sticlă spartă" / brut */
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   overflow: hidden;
 }
 
-.mission-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: #3b82f6;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* Efect la hover - glitch și culoare */
+.urban-btn:hover {
+  border-color: #ff003c;
+  background: rgba(255, 0, 60, 0.1);
+  transform: skewX(-5deg) translateX(5px); /* Se înclină puțin */
 }
 
-/* Punctul care pulsează (Rec) */
-.pulsing-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #3b82f6;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
+/* O linie care trece rapid peste buton la hover */
+.urban-btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.4s;
 }
+.urban-btn:hover::after { left: 100%; }
 
-.mission-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 5px;
-}
-
-.mission-desc {
-  font-size: 0.9rem;
-  color: #a0a0a0;
-  line-height: 1.5;
-}
-
-/* --- LINKS SECTION --- */
-.links-container {
-  width: 100%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.link-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Icon stanga, sageata dreapta */
-  padding: 18px 24px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 16px;
-  text-decoration: none;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.link-btn:hover {
-  background: rgba(255,255,255,0.08);
-  transform: translateX(5px); /* Se mișcă spre dreapta, sugerând acțiune */
-  border-color: rgba(255,255,255,0.2);
-}
-
-.btn-content {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.btn-title {
-  font-weight: 700;
-  font-size: 1rem;
-}
-
-.btn-subtitle {
-  font-size: 0.8rem;
-  color: #888;
-  font-weight: 400;
-}
+.btn-icon { width: 24px; height: 24px; fill: currentColor; }
 
 /* --- ANIMATIONS --- */
-@keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
+/* Asta face poza din spate să se miște lent */
+@keyframes slowPanZoom {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.1) translate(-2%, -2%); }
+  100% { transform: scale(1) translate(2%, 1%); }
+}
 
-/* --- RESPONSIVE DESKTOP --- */
+/* --- DESKTOP --- */
 @media (min-width: 800px) {
-  .app-container {
-    flex-direction: row;
-    justify-content: center;
-    gap: 80px;
-    align-items: flex-start;
-    padding-top: 100px;
+  .street-container {
+    align-items: flex-end; /* Pe desktop, conținutul jos-stânga */
+    justify-content: flex-start;
+    padding: 60px;
   }
-  .hero-card {
-    text-align: left;
-    max-width: 400px;
-    position: sticky; /* Rămâne fix pe desktop când dai scroll */
-    top: 50px;
-  }
-  .badges-container { justify-content: flex-start; }
-  .mission-card, .links-container { width: 450px; }
+  .content-layer { max-width: 600px; }
+  .brand-title { font-size: 7rem; }
+  /* Pe desktop, poza e mai puțin întunecată în dreapta unde nu e text */
+  .bg-gradient-overlay { background: linear-gradient(to right, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.3)); }
 }
