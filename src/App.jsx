@@ -12,14 +12,7 @@ function App() {
 
       {/* --- PERSONAJUL ALEX (Animația) --- */}
       {/* Apare în colț, blenduit cu ecranul */}
-      <video 
-        autoPlay loop muted playsInline 
-        className="alex-character"
-        // Adaugă linia asta de mai jos:
-        style={{ position: 'fixed', right: '-280px', bottom: '0', height: '80vh', zIndex: '1' }}
-      >
-        <source src={alexVideo} type="video/webm" />
-      </video>
+  
       <video 
         autoPlay 
         loop 
