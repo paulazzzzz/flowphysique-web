@@ -67,12 +67,12 @@ body {
 /* --- CONȚINUTUL (Grid) --- */
 .content-grid {
   position: relative;
-  z-index: 10; /* Textul mult peste video */
+  z-index: 20; /* Textul mult peste video */
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   display: flex;
   flex-direction: column; /* Pe mobil e coloană */
-  gap: 50px;
+  gap: 0px;
 }
 
 /* --- STÂNGA: TEXTE --- */
@@ -103,6 +103,201 @@ body {
   padding: 20px;
   border-left: 4px solid #d65a31;
 }
+
+/* --- SECȚIUNEA LATEST DROP (Aliniată la Stânga) --- */
+.latest-drop-section {
+  width: 100%;
+  /* Nu o lăsăm să se ducă până în Alex */
+  max-width: 900px; 
+  
+  /* ALINIEREA CHEIE: */
+  text-align: left; /* Titlul stă la stânga */
+  padding-left: 50px; /* Aceeași distanță ca la textul de sus */
+  
+  margin-top: 50px; 
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 10;
+}
+
+.section-title {
+  /* Mă asigur că titlul arată bine */
+  font-family: 'Anton', sans-serif;
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* Cât de lat să fie video-ul */
+  
+  /* ALINIEREA CUTIEI VIDEO: */
+  margin: 0; /* Fără "auto". Asta îl lipește de stânga. */
+  
+  border: 1px solid #333;
+  padding: 10px; 
+  background: #111;
+  transition: transform 0.3s ease;
+}
+
+.video-wrapper:hover {
+  border-color: #d65a31;
+  transform: scale(1.01);
+  box-shadow: 0 0 30px rgba(214, 90, 49, 0.1);
+}
+
+.video-link {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* Aspect Ratio 16:9 (YouTube standard) */
+  overflow: hidden;
+  background-color: #000;
+}
+
+.video-thumbnail {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.video-wrapper:hover .video-thumbnail {
+  opacity: 1;
+}
+
+/* --- BUTONUL PLAY --- */
+.play-button-overlay {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #fff;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  backdrop-filter: blur(5px);
+  transition: 0.3s;
+}
+
+.video-wrapper:hover .play-button-overlay {
+  background: #d65a31;
+  border-color: #d65a31;
+  color: #000;
+}
+
+.play-icon { font-size: 2rem; }
+.play-text { 
+  font-family: 'Anton', sans-serif; 
+  letter-spacing: 2px; 
+  font-size: 1.2rem; 
+  color: #fff;
+}
+.video-wrapper:hover .play-text { color: #000; }
+
+/* --- SECȚIUNEA PIPELINE (UPCOMING) --- */
+.pipeline-section {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Se așază automat */
+  gap: 30px;
+}
+
+.pipeline-card {
+  background: #0a0a0a; /* Foarte închis */
+  border: 1px solid #333;
+  padding: 25px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.pipeline-card:hover {
+  border-color: #d65a31;
+  transform: translateY(-5px);
+  background: #111;
+}
+
+/* Linia de sus cu status */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #222;
+  padding-bottom: 10px;
+}
+
+.status-tag {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  color: #d65a31;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.date-tag {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Titlu și descriere */
+.pipeline-card h3 {
+  font-family: 'Anton', sans-serif;
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  margin-bottom: 15px;
+}
+
+.pipeline-desc {
+  font-family: 'Roboto Mono', monospace;
+  color: #aaa;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+
+/* Featuring / Event By */
+.feat-row {
+  display: flex;
+  flex-direction: column;
+  background: #151515;
+  padding: 10px;
+  border-left: 3px solid #d65a31;
+}
+
+.feat-row .label {
+  font-size: 0.7rem;
+  color: #555;
+  font-weight: bold;
+}
+
+.feat-row .value {
+  font-family: 'Anton', sans-serif;
+  color: #ddd;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
 
 /* --- SECȚIUNEA PILLARS --- */
 .pillars-section {
@@ -185,9 +380,6 @@ body {
 }
 .street-btn:hover { background: transparent; color: #d65a31; }
 
-.btn-tiktok { background: #000; color: #fff; border-color: #fff; }
-.btn-tiktok:hover { background: #fff; color: #000; }
-
 /* --- DREAPTA: CARD TEACH ME --- */
 .teach-me-card {
   background: #e3d5c5; 
@@ -236,34 +428,107 @@ body {
 }
 .teach-btn:hover { background: #d65a31; color: #fff; }
 
-/* --- RESPONSIVE DESKTOP (MODIFICAREA E AICI!) --- */
+/* --- RESPONSIVE DESKTOP - ALINIERE GLOBALĂ PERFECTĂ --- */
 @media (min-width: 900px) {
+
+  /* 1. PARTEA DE SUS (HERO) - Sursa Adevărului */
+  .street-wrapper {
+    justify-content: flex-start !important; 
+    padding-left: 30px; /* <--- ASTA E LINIA DE START PENTRU TOT SITE-UL */
+
+  }
+
+  /* 2. Containerul cu Text și Card */
   .content-grid { 
+    display: flex;
     flex-direction: row; 
     align-items: center; 
-    justify-content: space-between; 
-  }
-  .left-col { flex: 1; padding-right: 50px; }
-  .right-col { flex: 1; display: flex; justify-content: flex-end; }
-  .brand-title { font-size: 5rem; }
-  
-  /* AICI ERA PROBLEMA! */
-  .alex-character { 
-    /* Am pus -15%. Asta îl împinge mult în dreapta, în afara ecranului puțin */
-    right: -15%; 
-    height: 85vh; 
-    bottom: 0;
-  }
-  .right-col { 
-    flex: 1; 
-    display: flex; 
+    justify-content: flex-start !important; /* Totul tras la stânga */
     
-    /* Aici e schimbarea: */
-    justify-content: flex-end; /* Tot în dreapta, DAR... */
-    padding-right: 20vw;       /* ...adăugăm o "pernă" uriașă de 15% din ecran */
+    gap: 40px; /* Spațiul dintre Text și Card (mai mic, să stea unite) */
+    
+    width: auto; /* Nu ocupăm tot ecranul, luăm doar cât avem nevoie */
+    max-width: 80%; /* Ne oprim la 80% din ecran ca să nu ne atingem de Alex */
+    position: relative;
+    z-index: 10;
+  }
+
+  /* 3. Coloana cu TEXT (Stânga) */
+  .left-col { 
+    flex: 0 0 auto; /* Nu se lățește infinit */
+    width: 500px;   /* O lățime fixă, sănătoasă pentru text */
+    max-width: 50vw; /* Pe ecrane mici, maxim jumate */
+    text-align: left;
+  }
+  
+  .brand-title {
+    font-size: 5rem; /* Mare, dar controlat */
+    line-height: 0.9;
+  }
+
+  /* 4. Coloana cu CARD (Dreapta Textului, dar tot spre stânga ecranului) */
+  .right-col { 
+    flex: 0 0 auto; 
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .teach-me-card {
+    width: 350px; /* Dimensiune fixă */
+    transform: rotate(2deg);
+    margin: 0; /* Fără margini care să împingă aiurea */
+  }
+
+  /* 5. ALEX - Rămâne Rege în Dreapta */
+  .alex-character { 
+    right: -20% !important; /* Îl lăsăm în dreapta */
+    height: 90vh !important;
+    z-index: 1;
   }
 }
 
+  /* 2. REGULA UNIVERSALĂ PENTRU SECȚIUNILE DE JOS */
+  /* Aplicăm aceleași reguli pentru TOATE 3, ca să nu existe diferențe */
+  .latest-drop-section, 
+  .pillars-section, 
+  .pipeline-section {
+    width: 100%;
+    max-width: 1200px; /* Cât de late pot fi maxim */
+    
+    /* ALINIEREA CRITICĂ - Trebuie să fie identică cu street-wrapper */
+    padding-left: 30px !important; 
+    padding-right: 20px;
+    margin: 0 !important; /* Fără centrare automată */
+    
+    margin-top: 80px !important; /* Spațiu egal între ele */
+    text-align: left; /* Tot textul începe din stânga */
+    position: relative;
+    z-index: 10;
+  }
+
+  /* 3. REGLAJE INTERNE (Ca să nu se centreze conținutul în interior) */
+  
+  /* Pentru Video (Next Drop) */
+  .video-wrapper {
+    margin: 0 !important; /* Lipește video-ul de stânga */
+  }
+
+  /* Pentru Mindset (Metoda Flow) */
+  .pillars-container {
+    justify-content: flex-start !important; /* Cardurile încep din stânga */
+  }
+
+  /* Pentru Pipeline (Upcoming) */
+  .pipeline-grid {
+    justify-content: flex-start !important;
+    /* Grid-ul se aliniază oricum bine, dar ne asigurăm */
+  }
+  
+  /* Asigurăm că titlurile sunt la stânga */
+  .section-title {
+    text-align: left;
+    margin-left: 0;
+  }
 /* --- RESPONSIVE MOBIL --- */
 @media (max-width: 900px) {
   .street-wrapper { padding-top: 80px; align-items: flex-start; }
@@ -282,5 +547,12 @@ body {
   
   .pillars-section {
     margin-top: 100px;
+  }
+}
+
+/* --- MOBIL --- */
+@media (max-width: 900px) {
+  .pipeline-grid {
+    grid-template-columns: 1fr; /* Una sub alta pe mobil */
   }
 }
